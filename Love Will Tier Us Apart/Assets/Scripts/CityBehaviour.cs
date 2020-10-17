@@ -91,7 +91,11 @@ public class CityBehaviour : MonoBehaviour
         
     }
 
-    
+    public void setToManager()
+    {
+        GameManager.instance.cityTag = gameObject.tag;
+        GameManager.instance.setCityAspect();
+    }
 
     void increaseRR()
     {
@@ -107,5 +111,41 @@ public class CityBehaviour : MonoBehaviour
     void setUnrest()
     {
         unrestText.text = "Unrest: " + Mathf.Round(unrest).ToString();
+    }
+
+    float returnPercent(float i,int percent)
+    {
+        float num = (i / 100) * percent;
+        return num;
+    }
+
+    public void modHunters()
+    {
+        robotPopulation -= returnPercent(robotPopulation, 20);
+    }
+
+    public void modIncome()
+    {
+        income += returnPercent(income, 10);
+    }
+
+    public void modUnrest()
+    {
+        unrest -= returnPercent(unrest, 10);
+    }
+
+    public void modTierOne()
+    {
+        unrest += returnPercent(unrest, 30);
+    }
+
+    public void modTierTwo()
+    {
+        unrest += returnPercent(unrest, 50);
+    }
+
+    public void modTierThree()
+    {
+        unrest += returnPercent(unrest, 70);
     }
 }
