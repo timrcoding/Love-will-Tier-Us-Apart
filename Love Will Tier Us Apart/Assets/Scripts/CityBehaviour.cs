@@ -8,6 +8,8 @@ public class CityBehaviour : MonoBehaviour
 {
     //CITY PROPERTIES
     [SerializeField]
+    private string cityName;
+    [SerializeField]
     private float initialHumanPopulation;
     [SerializeField]
     private float humanPopulation;
@@ -31,6 +33,8 @@ public class CityBehaviour : MonoBehaviour
 
     //TEXT & GRAPHIC ELEMENTS
     [SerializeField]
+    private TextMeshProUGUI cityNameText;
+    [SerializeField]
     private TextMeshProUGUI robotRateText;
     [SerializeField]
     private TextMeshProUGUI humanPopulationText;
@@ -49,7 +53,7 @@ public class CityBehaviour : MonoBehaviour
     [SerializeField]
     private bool unrestReduced;
     [SerializeField]
-    private bool lockDownLevel;
+    private bool tierLevel;
 
     //ATTACHED TO AN ENUMERATOR SO RATE IS SET TO 1 AT A CERTAIN POINT
     [SerializeField]
@@ -58,6 +62,7 @@ public class CityBehaviour : MonoBehaviour
     void Start()
     {
         StartCoroutine(newGeneration());
+        cityNameText.text = cityName;
         humanPopulation = initialHumanPopulation;
     }
 
