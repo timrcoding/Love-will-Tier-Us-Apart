@@ -16,7 +16,7 @@ public class NewsfeedBehaviour : MonoBehaviour
     {
         newTarget = transform.position;
         StartCoroutine(moveFeed());
-        Debug.Log("STARTED");
+        StartCoroutine(destroyObject());
         AudioManager.instance.playClip("Teleprinter");
         
     }
@@ -34,8 +34,9 @@ public class NewsfeedBehaviour : MonoBehaviour
         StartCoroutine(moveFeed());
     }
 
-    private void OnBecameInvisible()
+    IEnumerator destroyObject()
     {
+        yield return new WaitForSeconds(30);
         Destroy(gameObject);
     }
 }
