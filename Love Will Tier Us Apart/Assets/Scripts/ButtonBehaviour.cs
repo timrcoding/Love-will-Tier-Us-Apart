@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ButtonBehaviour : MonoBehaviour
 {
     [SerializeField]
-    public int uniqueId;
+    private int uniqueId;
+    [SerializeField]
+    private string description;
     void Start()
     {
         
@@ -15,5 +19,11 @@ public class ButtonBehaviour : MonoBehaviour
     {
         GameManager.instance.remedialIdentifier = uniqueId;
         GameManager.instance.remedialSelected = true;
+    }
+
+    public void setDescriptionText()
+    {
+        GameObject descText = GameObject.FindGameObjectWithTag("DescriptionText");
+        descText.GetComponent<TextMeshProUGUI>().text = description;
     }
 }

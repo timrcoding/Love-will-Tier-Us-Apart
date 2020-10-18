@@ -9,6 +9,8 @@ TagManager:
   - Cardiff
   - Belfast
   - Edinburgh
+  - DescriptionText
+  - DescriptionPanel
   layers:
   - Default
   - TransparentFX

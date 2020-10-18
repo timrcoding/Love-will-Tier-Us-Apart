@@ -6,6 +6,7 @@ using TMPro;
 
 public class CityBehaviour : MonoBehaviour
 {
+
     //CITY PROPERTIES
     [SerializeField]
     private string cityName;
@@ -30,6 +31,10 @@ public class CityBehaviour : MonoBehaviour
     [SerializeField]
     private float incomeMultiplier;
 
+    //UNREST FACTORS
+    [SerializeField]
+    private float unrestMultiplier = 1;
+
 
     //TEXT & GRAPHIC ELEMENTS
     [SerializeField]
@@ -44,6 +49,8 @@ public class CityBehaviour : MonoBehaviour
     private TextMeshProUGUI incomeText;
     [SerializeField]
     private TextMeshProUGUI unrestText;
+    [SerializeField]
+    private TextMeshProUGUI tierText;
 
     //REMEDIAL AIDS TO CITY
     [SerializeField]
@@ -61,18 +68,15 @@ public class CityBehaviour : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(newGeneration());
         cityNameText.text = cityName;
         humanPopulation = initialHumanPopulation;
     }
 
-    IEnumerator newGeneration()
+    public void newGeneration()
     {
-        yield return new WaitForSeconds(1);
         robotReplication();
         setIncome();
         setUnrest();
-        StartCoroutine(newGeneration());
         humanPopulation += 1;
     }
 
@@ -85,7 +89,7 @@ public class CityBehaviour : MonoBehaviour
         increaseRR();
         //SETS TEXTS
         float num = (float)Mathf.Round(robotRate * 100) / 100;
-        robotRateText.text = "RR = " + num.ToString();
+        robotRateText.text = "RR: " + num.ToString();
         humanPopulationText.text = "People: " + Mathf.Round(humanPopulation).ToString();
         robotPopulationText.text = "Robots: " + Mathf.Round(robotPopulation).ToString();
         
@@ -95,6 +99,7 @@ public class CityBehaviour : MonoBehaviour
     {
         GameManager.instance.cityTag = gameObject.tag;
         GameManager.instance.setCityAspect();
+        GetComponent<Animator>().SetTrigger("Press");
     }
 
     void increaseRR()
@@ -110,6 +115,7 @@ public class CityBehaviour : MonoBehaviour
 
     void setUnrest()
     {
+        unrest *= unrestMultiplier;
         unrestText.text = "Unrest: " + Mathf.Round(unrest).ToString();
     }
 
@@ -126,26 +132,32 @@ public class CityBehaviour : MonoBehaviour
 
     public void modIncome()
     {
-        income += returnPercent(income, 10);
+        incomeMultiplier += returnPercent(incomeMultiplier, 10);
     }
 
     public void modUnrest()
     {
-        unrest -= returnPercent(unrest, 10);
+        unrest -= returnPercent(unrest, 30);
     }
 
     public void modTierOne()
     {
-        unrest += returnPercent(unrest, 30);
+        robotRate -= returnPercent(robotRate, 30);
+        unrestMultiplier = 1.05f;
+        tierText.text = "T1";
     }
 
     public void modTierTwo()
     {
-        unrest += returnPercent(unrest, 50);
+        robotRate -= returnPercent(robotRate, 50);
+        unrestMultiplier = 1.1f;
+        tierText.text = "T2";
     }
 
     public void modTierThree()
     {
-        unrest += returnPercent(unrest, 70);
+        robotRate -= returnPercent(robotRate, 70);
+        unrestMultiplier = 1.15f;
+        tierText.text = "T3";
     }
 }

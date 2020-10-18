@@ -32,6 +32,7 @@ RectTransform:
   m_Children:
   - {fileID: 8236678358038814550}
   - {fileID: 8236678357609071548}
+  - {fileID: 8236678359244077730}
   m_Father: {fileID: 8236678359411081844}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -118,7 +119,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8236678357574228871}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6150436693988150937}
+        m_MethodName: setToManager
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8236678357609071551
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,13 +474,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8236678359411081844}
-  m_RootOrder: 1
+  m_Father: {fileID: 8236678357574228873}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 58.700016, y: 7.5}
-  m_SizeDelta: {x: 107.5, y: -16.399994}
+  m_AnchoredPosition: {x: 0, y: 41.5}
+  m_SizeDelta: {x: -10, y: -87.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8236678359244077728
 CanvasRenderer:
@@ -618,7 +630,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8236678357574228873}
-  - {fileID: 8236678359244077730}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
